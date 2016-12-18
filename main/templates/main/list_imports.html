@@ -1,0 +1,25 @@
+<table>
+    <tr>
+        <th>FABRIC</th>
+        <th>COLOR</th>
+        <th>SUPPLIER</th>                
+        <th>QUANTITY</th>
+        <th>COMMENT</th>
+        <th>PACKING LIST</th>
+        
+    </tr>
+    {% for item in import_object %}
+        <tr> 
+            <td>{{ item.article.fabric }}</td>
+            <td>{{ item.article.color }}</td>
+            <td>{{ item.article.supplier }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.comment }}</td>
+            <td>{{ item.packing_list }}</td>\
+            {% csrf_token %}
+            <td><button value="{{ item.id }}" onclick="deleteImport(this);">DELETE</button></td>
+            
+    {% endfor %}    
+        </tr>
+    
+</table>

@@ -1,0 +1,102 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    
+
+
+<div>
+   <form id="export" method="GET" action="">
+        {% csrf_token %}
+            <select id="packing_list" name='packing_list'>
+                <option value=''>-----</option>
+                {% for packing in packing_list_object %}
+                    <option id="packing_list_{{ packing.id }}" value='{{ packing.id }}'>{{ packing.name }}</option>
+                {% endfor %}    
+            </select> 
+
+            <input type='submit' value='search'>  
+
+    </form>
+</div>
+
+
+
+    <form id="export_packing_list" method="POST" action="" name='add_packing_list'>
+        {% csrf_token %}
+        {{ packing_list_form.as_p }}
+        <button type="submit"> SAVE </button>
+    </form>
+
+
+
+<div id="list_imports">
+        <table>
+            <tr>
+                <th>FABRIC</th>
+                <th>COLOR</th>
+                <th>SUPPLIER</th>                
+                <th>ORDER</th>
+                <th>ART</th>
+                <th>USE</th>
+                <th>COMMENT</th>
+                <th>PACKING LIST</th>
+                
+            </tr>
+            {% for item in export_object %}
+                <tr> 
+                    <td>{{ item.article.fabric }}</td>
+                    <td>{{ item.article.color }}</td>
+                    <td>{{ item.article.supplier }}</td>
+                    <td>{{ item.order }}</td>
+                    <td>{{ item.art }}</td>
+                    <td>{{ item.use }}</td>
+                    <td>{{ item.comment }}</td>
+                    <td>{{ item.packing_list }}</td>
+                    {% csrf_token %}
+                    <td><button value="{{ item.id }}" onclick="deleteImport(this);">DELETE</button></td>
+                    
+            {% endfor %}    
+                </tr>
+            
+        </table>
+            </div>
+
+
+{% if export_form %}
+        <div style="">
+               <form id="add_export" name="add_export" method="POST" action="">
+                {% csrf_token %}
+                {{ export_form }}
+                <button type="submit" id="add_export_submit">SAVE</button>
+                </form>
+        </div>
+        {% endif %}
+
+
+
+
+<script>
+$('#packing_list').on('change', function() {
+    $('#id_add_packing_list').val(this.value);
+});
+</script>
+<script>
+$(document).ready(function(){
+    if ("{{ packing_list_id }}")
+    {
+        $("#packing_list option[value='{{ packing_list_id }}' ]").prop("selected", "selected");
+        $('#id_add_packing_list').val("{{ packing_list_id }}");
+
+    }
+    
+    if ("{{ import_packing_list_id }}")
+    {
+            $("#packing_list option[value='{{ import_packing_list_id }}' ]").prop("selected", "selected");
+            $('#id_add_packing_list').val("{{ import_packing_list_id }}");
+    }
+});
+</script>
+
+
+{% endblock %}            

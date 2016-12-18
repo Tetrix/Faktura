@@ -1,0 +1,19 @@
+    <div id="list_articles">
+        <table>
+            <tr>
+                <th>CODE</th>
+                <th>FABRIC</th>
+                <th>COLOR</th>
+                <th>PUPPLIER</th>
+            </tr>
+            {% for item in article_object %}
+                <tr> 
+                    <td>{{ item.id}}</td>
+                    <td>{{ item.fabric}}</td>
+                    <td>{{ item.color}}</td>
+                    <td>{{ item.supplier}}</td>
+                    <td><button value="{{ item.id }}" onclick="deleteArticle(this);">DELETE</button></td>
+                    </tr>
+            {% endfor %}
+        </table>
+    </div>

@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <form id="article" method="post" action="" enctype="multipart/form-data">
+ 
+        {% csrf_token %}
+        
+        <div>
+            <center>
+                <input type="text" style="width:200px; height:30px;" name="fabric" placeholder="Fabric"/>       
+                <input type="text" style="width:200px; height:30px;" name="color" placeholder="Color"/>
+                <input type="text" style="width:200px; height:30px;" name="supplier" placeholder="Supplier"/>
+                <input type="submit" style="width:200px; height:30px;" name="save" value="Save" />
+            </center>
+        </div>
+
+        </form>
+
+
+    <div id="list_articles">
+        <table>
+            <tr>
+                <th>CODE</th>
+                <th>FABRIC</th>
+                <th>COLOR</th>
+                <th>PUPPLIER</th>
+            </tr>
+            {% for item in article_object %}
+                <tr> 
+                    <td>{{ item.id}}</td>
+                    <td>{{ item.fabric}}</td>
+                    <td>{{ item.color}}</td>
+                    <td>{{ item.supplier}}</td>
+                    {% csrf_token %}
+                    <td><button value="{{ item.id }}" onclick="deleteArticle(this);">DELETE</button></td>
+                    </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+{% endblock %}

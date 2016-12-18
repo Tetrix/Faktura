@@ -1,0 +1,3 @@
+Resigned officers
+From 'Charges' we are missing Created and Delivered dates and Persons entitled
+From 'Overview' we are missing both dates from Confirmation statement

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+
+<head>
+    <title>Faktura</title>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="{% static 'home/css/base_style.css' %}" type = "text/css"/>
+    <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/faktura.js' %}"></script>
+   
+</head>
+
+
+
+<body>
+    
+    <header>
+                
+                
+                <nav>
+                    <ul>
+                        
+                        <li><a href='/'>HOME </a></li> 
+                        <li><a href="{% url 'articles' %}"> New Article </a></li> 
+                        <li><a href="{% url 'imports' %}"> Import </a></li> 
+                        <li><a href="{% url 'exports' %}"> EXPORT </a></li> 
+                    
+                    
+                    </ul>
+                </nav>
+                
+
+            
+        </header>
+
+            </div>
+               {% block content %}
+               {% endblock %}   
+            </div>
+          
+        <!-- </div>  -->
+    
+    
+</body>
+
+</html>
